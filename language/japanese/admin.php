@@ -1,0 +1,3 @@
+<?php
+define ("_AM_RAXEARCH_NAME",		"³ÚÅ·¸¡º÷");
+?>

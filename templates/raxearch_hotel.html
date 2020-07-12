@@ -1,0 +1,61 @@
+<div style="float:right; margin:0;"><a href="http://pt.afl.rakuten.co.jp/c/0069f7de.b680e874/?url=http%3a%2f%2fwww.rakuten.co.jp%2f" target="raxearch"><img src="http://ba.afl.rakuten.co.jp/b/0069f7de.b680e874/" width="88" height="31" border="0" /></a><br clear="all" /></div>
+<div class="content">
+<h3><{$smarty.const._MD_RAXEARCH_H_TITLE}></h3>
+
+<form action="<{$xoops_url}>/modules/<{$mydirname}>/index.php" style="margin-left:24px;">
+<{$smarty.const._MD_RAXEARCH_KEYWORD}><{$smarty.const._MD_RAXEARCH_COLON}><input type="text" name="keyword" value="<{$keyword}>" size="48" />
+<input type="hidden" name="op" value="hotel" />
+<input type="submit" value="<{$smarty.const._MD_RAXEARCH_H_SUBMIT}>" />
+</form>
+
+<{if $searchResult.hits > 0}>
+
+<div align="right" style="margin-bottom:8px;">
+<{if $searchResult.prevPage != 0}><a href="<{$xoops_url}>/modules/<{$mydirname}>/index.php?keyword=<{$keyword_encoded}>&amp;op=hotel&amp;page=<{$searchResult.prevPage}>"><{$smarty.const._MD_RAXEARCH_PREV_PAGE}></a><{/if}>
+<{$smarty.const._MD_RAXEARCH_SPACE}><{$smarty.const._MD_RAXEARCH_RESULT}><{$smarty.const._MD_RAXEARCH_COLON}><{$searchResult.first}><{$smarty.const._MD_RAXEARCH_WAVE_DASH}><{$searchResult.last}>&nbsp;(<{$searchResult.recordCountF}><{$smarty.const._MD_RAXEARCH_WITHIN}>)¡¡
+<{if $searchResult.nextPage != 0}><a href="<{$xoops_url}>/modules/<{$mydirname}>/index.php?keyword=<{$keyword_encoded}>&amp;op=hotel&amp;page=<{$searchResult.nextPage}>"><{$smarty.const._MD_RAXEARCH_NEXT_PAGE}></a><{/if}>
+</div>
+
+<table border="0" cellpadding="0" cellspacing="0" style="margin-bottom:12px;">
+<{foreach item=item from=$items}>
+<tr>
+<th colspan="2" style="padding:3px 12px 3px 12px;"><a href="<{$item.hotelAffiliateUrl}>" target="rakuten" title="<{$item.hotelKanaName}>"><{$item.hotelNameF}></a></th>
+</tr>
+<tr class="<{cycle values="even,odd"}>">
+<td align="center">
+<{if $item.hotelImageUrl != ''}><a href="<{$item.hotelAffiliateUrl}>" target="rakuten"><img src = "<{$item.hotelImageUrl}>" border="0" style="margin-bottom:10px;" alt="<{$item.hotelName}>" name="img<{$item.hotelNo}>" onload="if(document.img<{$item.hotelNo}>.width > 180 ){document.img<{$item.hotelNo}>.width = 180;}" /></a><br clear="all" /><{/if}>
+<div style="color:#0000cc;">
+<br /><{$smarty.const._MD_RAXEARCH_STATION}> <{$item.nearestStationName}>
+</div>
+</td>
+<td style="padding:8px 8px 24px 8px;">
+<strong>
+<{if $item.hotelSpecialF != ''}><{$item.hotelSpecialF}><{else}><{$item.hotelSpecialSumF}><{/if}><br />
+</strong>
+
+<{if $item.access != ''}><div style="margin-top:16px;"><{$item.access}></div><{/if}>
+<{if $item.parkingInformation != ''}><div style="margin-top:16px;"><{$smarty.const._MD_RAXEARCH_PARKING}> <{$item.parkingInformation}></div><{/if}>
+
+<span style="float:right; margin-top:12px;"><{$item.hotelClassCode}> - <{$item.hotelNo}></span>
+</td>
+</tr>
+<{/foreach}>
+</table>
+
+<div align="right" style="margin-top:8px;">
+<{if $searchResult.prevPage != 0}><a href="<{$xoops_url}>/modules/<{$mydirname}>/index.php?keyword=<{$keyword_encoded}>&amp;op=hotel&amp;page=<{$searchResult.prevPage}>"><{$smarty.const._MD_RAXEARCH_PREV_PAGE}></a><{/if}>
+<{$smarty.const._MD_RAXEARCH_SPACE}><{$smarty.const._MD_RAXEARCH_RESULT}><{$smarty.const._MD_RAXEARCH_COLON}><{$searchResult.first}><{$smarty.const._MD_RAXEARCH_WAVE_DASH}><{$searchResult.last}>&nbsp;(<{$searchResult.recordCountF}><{$smarty.const._MD_RAXEARCH_WITHIN}>)¡¡
+<{if $searchResult.nextPage != 0}><a href="<{$xoops_url}>/modules/<{$mydirname}>/index.php?keyword=<{$keyword_encoded}>&amp;op=hotel&amp;page=<{$searchResult.nextPage}>"><{$smarty.const._MD_RAXEARCH_NEXT_PAGE}></a><{/if}>
+</div>
+
+<{else}>
+<{if $keyword == ''}><{$smarty.const._MD_RAXEARCH_PLS_INPUT}><{else}><{$smarty.const._MD_RAXEARCH_NO_HITS}><{/if}>
+<{/if}>
+<br />
+<br />
+
+<{$smarty.const._MD_RAXEARCH_NOTICE}>
+
+<div style="float:right; font-size:xx-small;"><a href="http://xoops.taquino.net/" target="_top">-- &copy;2009 raxearch Module by Taq --</a></div>
+
+</div>

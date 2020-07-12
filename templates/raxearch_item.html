@@ -1,0 +1,95 @@
+<div style="float:right; margin:0;"><a href="http://pt.afl.rakuten.co.jp/c/0069f7de.b680e874/?url=http%3a%2f%2fwww.rakuten.co.jp%2f" target="raxearch"><img src="http://ba.afl.rakuten.co.jp/b/0069f7de.b680e874/" width="88" height="31" border="0" /></a><br clear="all" /></div>
+<div class="content">
+<h3><{$smarty.const._MD_RAXEARCH_I_TITLE}></h3>
+
+<form action="<{$xoops_url}>/modules/<{$mydirname}>/index.php" style="margin-left:24px;">
+<{$smarty.const._MD_RAXEARCH_KEYWORD}><{$smarty.const._MD_RAXEARCH_COLON}><input type="text" name="keyword" value="<{$keyword}>" size="48" />
+<{$smarty.const._MD_RAXEARCH_PRICE_RANGE}><{$smarty.const._MD_RAXEARCH_COLON}><input type="text" name="minPrice" value="<{$minPrice}>" size="6" /><{$smarty.const._MD_RAXEARCH_WAVE_DASH}><input type="text" name="maxPrice" value="<{$maxPrice}>" size="6" />
+<input type="hidden" name="op" value="item" />
+<input type="submit" value="<{$smarty.const._MD_RAXEARCH_I_SUBMIT}>" />
+</form>
+
+<{if $searchResult.hits > 0}>
+
+<div align="left"><{$smarty.const._MD_RAXEARCH_LEFT_SQUARE}>
+<{if $sort != 'itemPrice'}>
+<a href="<{$xoops_url}>/modules/<{$mydirname}>/index.php?keyword=<{$keyword_encoded}>&amp;op=item&amp;sort=itemPrice&amp;minPrice=<{$minPrice}>&amp;maxPrice=<{$maxPrice}>"><{$smarty.const._MD_RAXEARCH_PRICE_ASC}></a>
+<{else}>
+<span style="color:#ff0000; font-weight:bold;"><{$smarty.const._MD_RAXEARCH_PRICE_ASC}></span>
+<{/if}>
+<{$smarty.const._MD_RAXEARCH_VERTICAL}>
+<{if $sort != '-itemPrice'}>
+<a href="<{$xoops_url}>/modules/<{$mydirname}>/index.php?keyword=<{$keyword_encoded}>&amp;op=item&amp;sort=-itemPrice&amp;minPrice=<{$minPrice}>&amp;maxPrice=<{$maxPrice}>"><{$smarty.const._MD_RAXEARCH_PRICE_DSC}></a>
+<{else}>
+<span style="color:#ff0000; font-weight:bold;"><{$smarty.const._MD_RAXEARCH_PRICE_DSC}></span>
+<{/if}>
+<{$smarty.const._MD_RAXEARCH_VERTICAL}>
+<{if $sort != '-updateTimestamp'}>
+<a href="<{$xoops_url}>/modules/<{$mydirname}>/index.php?keyword=<{$keyword_encoded}>&amp;op=item&amp;sort=-updateTimestamp&amp;minPrice=<{$minPrice}>&amp;maxPrice=<{$maxPrice}>"><{$smarty.const._MD_RAXEARCH_TIME_DSC}></a>
+<{else}>
+<span style="color:#ff0000; font-weight:bold;"><{$smarty.const._MD_RAXEARCH_TIME_DSC}></span>
+<{/if}>
+<{$smarty.const._MD_RAXEARCH_VERTICAL}>
+<{if $sort != '-reviewCount'}>
+<a href="<{$xoops_url}>/modules/<{$mydirname}>/index.php?keyword=<{$keyword_encoded}>&amp;op=item&amp;sort=-reviewCount&amp;minPrice=<{$minPrice}>&amp;maxPrice=<{$maxPrice}>"><{$smarty.const._MD_RAXEARCH_REV_CNT_DSC}></a>
+<{else}>
+<span style="color:#ff0000; font-weight:bold;"><{$smarty.const._MD_RAXEARCH_REV_CNT_DSC}></span>
+<{/if}>
+<{$smarty.const._MD_RAXEARCH_RIGHT_SQUARE}></div>
+
+<div align="right" style="margin-bottom:8px;">
+<{if $searchResult.prevPage != 0}><a href="<{$xoops_url}>/modules/<{$mydirname}>/index.php?keyword=<{$keyword_encoded}>&amp;op=item&amp;sort=<{$sort}>&amp;minPrice=<{$minPrice}>&amp;maxPrice=<{$maxPrice}>&amp;page=<{$searchResult.prevPage}>"><{$smarty.const._MD_RAXEARCH_PREV_PAGE}></a><{/if}>
+<{$smarty.const._MD_RAXEARCH_SPACE}><{$smarty.const._MD_RAXEARCH_RESULT}><{$smarty.const._MD_RAXEARCH_COLON}><{$searchResult.first}><{$smarty.const._MD_RAXEARCH_WAVE_DASH}><{$searchResult.last}>&nbsp;(<{$searchResult.countF}><{$smarty.const._MD_RAXEARCH_WITHIN}>)¡¡
+<{if $searchResult.nextPage != 0}><a href="<{$xoops_url}>/modules/<{$mydirname}>/index.php?keyword=<{$keyword_encoded}>&amp;op=item&amp;sort=<{$sort}>&amp;minPrice=<{$minPrice}>&amp;maxPrice=<{$maxPrice}>&amp;page=<{$searchResult.nextPage}>"><{$smarty.const._MD_RAXEARCH_NEXT_PAGE}></a><{/if}>
+</div>
+
+<table border="0" cellpadding="0" cellspacing="0" style="margin-bottom:12px;">
+<{foreach item=item from=$items}>
+<tr>
+<th colspan="2" style="padding:3px 12px 3px 12px;"><a href="<{$item.affiliateUrl}>" target="rakuten"><{$item.itemNameF}></a></th>
+</tr>
+<tr class="<{cycle values="even,odd"}>">
+<td align="center">
+<{if $item.mediumImageUrl != ''}><a href="<{$item.affiliateUrl}>" target="rakuten"><img src = "<{$item.mediumImageUrl}>" border="0" style="margin-bottom:20px;" name="img<{$item.itemCode}>" onload="if(document.img<{$item.itemCode}>.width > 240 ){document.img<{$item.itemCode}>.width = 240;}" /></a><br clear="all" /><{/if}>
+<div style="margin:12px 0 12px 0;">
+<{if $item.shopAffiliateUrl != ''}>
+<strong><a href="<{$item.shopAffiliateUrl}>" target="rakuten"><{$item.shopNameF}></a></strong>
+<{else}>
+<strong><{$item.shopNameF}></strong>
+<{/if}>
+</div>
+<div style="margin-bottom:8px;">
+<span style="font-weight:bold;"><{$item.itemPriceF}><{$smarty.const._MD_RAXEARCH_YEN}></span> <{if $item.taxFlag == 1}><{$smarty.const._MD_RAXEARCH_EXC_TAX}><{/if}>
+<{if $item.postageFlag == 0}><br /><{$smarty.const._MD_RAXEARCH_INC_POSTAGE}><{/if}>
+</div>
+<div style="color:#0000cc;">
+<{if $item.creditCardFlag == 1}><br /><{$smarty.const._MD_RAXEARCH_CARD_AVL}><{/if}>
+<{if $item.shopOfTheYearFlag == 1}><br /><{$smarty.const._MD_RAXEARCH_SHOP_OF_YEAR}><{/if}>
+</div>
+</td>
+<td style="padding:8px 8px 24px 8px;">
+<{$item.itemCaptionF}>
+<{if $item.endTime != ''}><div style="margin-top:16px; color:#00cc00; font-weight:bold;"><{$smarty.const._MD_RAXEARCH_TIME_SALE}><{$smarty.const._MD_RAXEARCH_COLON}><{$item.startTime}> <{$smarty.const._MD_RAXEARCH_WAVE_DASH}> <{$item.endTime}></div><{/if}>
+<span style="float:right"><{$item.itemCode}></span>
+</td>
+</tr>
+<{/foreach}>
+</table>
+
+<div align="right" style="margin-top:8px;">
+<{if $searchResult.prevPage != 0}><a href="<{$xoops_url}>/modules/<{$mydirname}>/index.php?keyword=<{$keyword_encoded}>&amp;op=item&amp;sort=<{$sort}>&amp;minPrice=<{$minPrice}>&amp;maxPrice=<{$maxPrice}>&amp;page=<{$searchResult.prevPage}>"><{$smarty.const._MD_RAXEARCH_PREV_PAGE}></a><{/if}>
+<{$smarty.const._MD_RAXEARCH_SPACE}><{$smarty.const._MD_RAXEARCH_RESULT}><{$smarty.const._MD_RAXEARCH_COLON}><{$searchResult.first}><{$smarty.const._MD_RAXEARCH_WAVE_DASH}><{$searchResult.last}>&nbsp;(<{$searchResult.countF}><{$smarty.const._MD_RAXEARCH_WITHIN}>)¡¡
+<{if $searchResult.nextPage != 0}><a href="<{$xoops_url}>/modules/<{$mydirname}>/index.php?keyword=<{$keyword_encoded}>&amp;op=item&amp;sort=<{$sort}>&amp;minPrice=<{$minPrice}>&amp;maxPrice=<{$maxPrice}>&amp;page=<{$searchResult.nextPage}>"><{$smarty.const._MD_RAXEARCH_NEXT_PAGE}></a><{/if}>
+</div>
+
+<{else}>
+<{if $keyword == ''}><{$smarty.const._MD_RAXEARCH_PLS_INPUT}><{else}><{$smarty.const._MD_RAXEARCH_NO_HITS}><{/if}>
+<{/if}>
+<br />
+<br />
+
+<{$smarty.const._MD_RAXEARCH_NOTICE}>
+
+<div style="float:right; font-size:xx-small;"><a href="http://xoops.taquino.net/" target="_top">-- &copy;2009 raxearch Module by Taq --</a></div>
+
+</div>
